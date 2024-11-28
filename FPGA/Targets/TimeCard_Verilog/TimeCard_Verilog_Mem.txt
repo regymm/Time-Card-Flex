@@ -1,0 +1,830 @@
+Ver: 0000000a
+todslave: enablecontrol: 10000001
+todslave: errorstatus: 00000001
+todslave: uartpolarity: 00000001
+todslave: version: 00020003
+todslave: correction: 00000000
+todslave: uartbaudrate: 00000007
+todslave: utcstatus: 00000000
+todslave: timetoleap: 00000000
+todslave: attennastatus: 320001e2
+todslave: satellitenumber: 00000001
+axi_uart16550_ext: 00000000
+axi_uart16550_ext: 00000000
+axi_uart16550_ext: 00000001
+axi_uart16550_ext: 00000003
+axi_gpio_ext: 00000003
+axi_gpio_ext: ffffffff
+axi_gpio_ext: 00000060
+axi_gpio_ext: ffffffff
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+abcd1234
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+98982323
+freqcounter1: freq: 80000000
+freqcounter2: freq: 80000000
+freqcounter3: freq: 80000000
+freqcounter4: freq: 80000000
+Core 1: 
+	Type Nr	: 00000001
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 01300000
+	High addr range	: 0130ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 5443436f
+	ASCII 2	: 72654c69
+	ASCII 3	: 73740000
+	ASCII 4	: 00000000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 2: 
+	Type Nr	: 00000002
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 01000000
+	High addr range	: 0100ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434164
+	ASCII 2	: 6a436c6f
+	ASCII 3	: 636b0000
+	ASCII 4	: 00000000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 3: 
+	Type Nr	: 00000003
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 010d0000
+	High addr range	: 010dffff
+	Interrupt Mask	: 0000000b
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6747656e
+	ASCII 3	: 65726174
+	ASCII 4	: 6f723100
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 4: 
+	Type Nr	: 00000003
+	Instance Nr	: 00000001
+	Version Nr	: 00010000
+	Low addr range	: 010e0000
+	High addr range	: 010effff
+	Interrupt Mask	: 0000000c
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6747656e
+	ASCII 3	: 65726174
+	ASCII 4	: 6f723200
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 5: 
+	Type Nr	: 00000003
+	Instance Nr	: 00000002
+	Version Nr	: 00010000
+	Low addr range	: 010f0000
+	High addr range	: 010fffff
+	Interrupt Mask	: 0000000d
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6747656e
+	ASCII 3	: 65726174
+	ASCII 4	: 6f723300
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 6: 
+	Type Nr	: 00000003
+	Instance Nr	: 00000003
+	Version Nr	: 00010000
+	Low addr range	: 01100000
+	High addr range	: 0110ffff
+	Interrupt Mask	: 0000000e
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6747656e
+	ASCII 3	: 65726174
+	ASCII 4	: 6f723400
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 7: 
+	Type Nr	: 00000004
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 01010000
+	High addr range	: 0101ffff
+	Interrupt Mask	: 00000001
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6754696d
+	ASCII 3	: 65737461
+	ASCII 4	: 6d706572
+	ASCII 5	: 474e5353
+	ASCII 6	: 50505300
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 8: 
+	Type Nr	: 00000004
+	Instance Nr	: 00000001
+	Version Nr	: 00010000
+	Low addr range	: 01020000
+	High addr range	: 0102ffff
+	Interrupt Mask	: 00000002
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6754696d
+	ASCII 3	: 65737461
+	ASCII 4	: 6d706572
+	ASCII 5	: 31000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 9: 
+	Type Nr	: 00000004
+	Instance Nr	: 00000002
+	Version Nr	: 00010000
+	Low addr range	: 01060000
+	High addr range	: 0106ffff
+	Interrupt Mask	: 00000006
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6754696d
+	ASCII 3	: 65737461
+	ASCII 4	: 6d706572
+	ASCII 5	: 32000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 10: 
+	Type Nr	: 00000004
+	Instance Nr	: 00000003
+	Version Nr	: 00010000
+	Low addr range	: 010c0000
+	High addr range	: 010cffff
+	Interrupt Mask	: 00000000
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6754696d
+	ASCII 3	: 65737461
+	ASCII 4	: 6d706572
+	ASCII 5	: 46504741
+	ASCII 6	: 50505300
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 11: 
+	Type Nr	: 00000004
+	Instance Nr	: 00000004
+	Version Nr	: 00010000
+	Low addr range	: 01110000
+	High addr range	: 0111ffff
+	Interrupt Mask	: 0000000f
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6754696d
+	ASCII 3	: 65737461
+	ASCII 4	: 6d706572
+	ASCII 5	: 33000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 12: 
+	Type Nr	: 00000004
+	Instance Nr	: 00000005
+	Version Nr	: 00010000
+	Low addr range	: 01120000
+	High addr range	: 0112ffff
+	Interrupt Mask	: 00000010
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 54435369
+	ASCII 2	: 6754696d
+	ASCII 3	: 65737461
+	ASCII 4	: 6d706572
+	ASCII 5	: 34000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 13: 
+	Type Nr	: 00000005
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 01030000
+	High addr range	: 0103ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54435050
+	ASCII 2	: 5347656e
+	ASCII 3	: 65726174
+	ASCII 4	: 6f720000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 14: 
+	Type Nr	: 00000006
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 01200000
+	High addr range	: 0120ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434672
+	ASCII 2	: 6571436f
+	ASCII 3	: 756e7465
+	ASCII 4	: 72310000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 15: 
+	Type Nr	: 00000006
+	Instance Nr	: 00000001
+	Version Nr	: 00010000
+	Low addr range	: 01210000
+	High addr range	: 0121ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434672
+	ASCII 2	: 6571436f
+	ASCII 3	: 756e7465
+	ASCII 4	: 72320000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 16: 
+	Type Nr	: 00000006
+	Instance Nr	: 00000002
+	Version Nr	: 00010000
+	Low addr range	: 01220000
+	High addr range	: 0122ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434672
+	ASCII 2	: 6571436f
+	ASCII 3	: 756e7465
+	ASCII 4	: 72330000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 17: 
+	Type Nr	: 00000006
+	Instance Nr	: 00000003
+	Version Nr	: 00010000
+	Low addr range	: 01230000
+	High addr range	: 0123ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434672
+	ASCII 2	: 6571436f
+	ASCII 3	: 756e7465
+	ASCII 4	: 72340000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 18: 
+	Type Nr	: 00000007
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 00130000
+	High addr range	: 00130fff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 5443436c
+	ASCII 2	: 6f636b44
+	ASCII 3	: 65746563
+	ASCII 4	: 746f7200
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 19: 
+	Type Nr	: 00000008
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 00140000
+	High addr range	: 00143fff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 5443534d
+	ASCII 2	: 4153656c
+	ASCII 3	: 6563746f
+	ASCII 4	: 72496e73
+	ASCII 5	: 7430536c
+	ASCII 6	: 61766531
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 20: 
+	Type Nr	: 00000008
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 00220000
+	High addr range	: 00223fff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 5443534d
+	ASCII 2	: 4153656c
+	ASCII 3	: 6563746f
+	ASCII 4	: 72496e73
+	ASCII 5	: 7430536c
+	ASCII 6	: 61766532
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 21: 
+	Type Nr	: 00000009
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: ffffffff
+	High addr range	: ffffffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54435050
+	ASCII 2	: 53536f75
+	ASCII 3	: 72636553
+	ASCII 4	: 656c6563
+	ASCII 5	: 746f7230
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 22: 
+	Type Nr	: 00000009
+	Instance Nr	: 00000001
+	Version Nr	: 00010000
+	Low addr range	: ffffffff
+	High addr range	: ffffffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54435050
+	ASCII 2	: 53536f75
+	ASCII 3	: 72636553
+	ASCII 4	: 656c6563
+	ASCII 5	: 746f7231
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 23: 
+	Type Nr	: 0000000a
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 00020000
+	High addr range	: 00020fff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434650
+	ASCII 2	: 47415665
+	ASCII 3	: 7273696f
+	ASCII 4	: 6e000000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 24: 
+	Type Nr	: 0000000b
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 01040000
+	High addr range	: 0104ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54435050
+	ASCII 2	: 53536c61
+	ASCII 3	: 76650000
+	ASCII 4	: 00000000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 25: 
+	Type Nr	: 0000000c
+	Instance Nr	: 00000000
+	Version Nr	: 00020003
+	Low addr range	: 01050000
+	High addr range	: 0105ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 5443546f
+	ASCII 2	: 44536c61
+	ASCII 3	: 76650000
+	ASCII 4	: 00000000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 26: 
+	Type Nr	: 0000000d
+	Instance Nr	: 00000000
+	Version Nr	: 00010000
+	Low addr range	: 01070000
+	High addr range	: 0107ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434475
+	ASCII 2	: 6d6d7941
+	ASCII 3	: 7869536c
+	ASCII 4	: 61766530
+	ASCII 5	: 28706c61
+	ASCII 6	: 6365686f
+	ASCII 7	: 6c646572
+	ASCII 8	: 29000000
+	ASCII 9	: 00000000
+Core 27: 
+	Type Nr	: 0000000d
+	Instance Nr	: 00000001
+	Version Nr	: 00010000
+	Low addr range	: 01080000
+	High addr range	: 0108ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434475
+	ASCII 2	: 6d6d7941
+	ASCII 3	: 7869536c
+	ASCII 4	: 61766531
+	ASCII 5	: 28706c61
+	ASCII 6	: 6365686f
+	ASCII 7	: 6c646572
+	ASCII 8	: 29000000
+	ASCII 9	: 00000000
+Core 28: 
+	Type Nr	: 0000000d
+	Instance Nr	: 00000002
+	Version Nr	: 00010000
+	Low addr range	: 01090000
+	High addr range	: 0109ffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434475
+	ASCII 2	: 6d6d7941
+	ASCII 3	: 7869536c
+	ASCII 4	: 61766532
+	ASCII 5	: 28706c61
+	ASCII 6	: 6365686f
+	ASCII 7	: 6c646572
+	ASCII 8	: 29000000
+	ASCII 9	: 00000000
+Core 29: 
+	Type Nr	: 0000000d
+	Instance Nr	: 00000003
+	Version Nr	: 00010000
+	Low addr range	: 010a0000
+	High addr range	: 010affff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434475
+	ASCII 2	: 6d6d7941
+	ASCII 3	: 7869536c
+	ASCII 4	: 61766533
+	ASCII 5	: 28706c61
+	ASCII 6	: 6365686f
+	ASCII 7	: 6c646572
+	ASCII 8	: 29000000
+	ASCII 9	: 00000000
+Core 30: 
+	Type Nr	: 0000000d
+	Instance Nr	: 00000004
+	Version Nr	: 00010000
+	Low addr range	: 010b0000
+	High addr range	: 010bffff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 54434475
+	ASCII 2	: 6d6d7941
+	ASCII 3	: 7869536c
+	ASCII 4	: 61766534
+	ASCII 5	: 28706c61
+	ASCII 6	: 6365686f
+	ASCII 7	: 6c646572
+	ASCII 8	: 29000000
+	ASCII 9	: 00000000
+Core 31: 
+	Type Nr	: 00010000
+	Instance Nr	: 00000000
+	Version Nr	: 02090000
+	Low addr range	: 00010000
+	High addr range	: 00010fff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49504349
+	ASCII 4	: 65000000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 32: 
+	Type Nr	: 00010001
+	Instance Nr	: 00000000
+	Version Nr	: 02000000
+	Low addr range	: 00100000
+	High addr range	: 00100fff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49475049
+	ASCII 4	: 4f657874
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 33: 
+	Type Nr	: 00010001
+	Instance Nr	: 00000001
+	Version Nr	: 02000000
+	Low addr range	: 00110000
+	High addr range	: 00110fff
+	Interrupt Mask	: ffffffff
+	Sensitivity Mask	: ffffffff
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49475049
+	ASCII 4	: 4f474e53
+	ASCII 5	: 534d4143
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 34: 
+	Type Nr	: 00010002
+	Instance Nr	: 00000000
+	Version Nr	: 02000000
+	Low addr range	: 00150000
+	High addr range	: 0015ffff
+	Interrupt Mask	: 00000007
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49494943
+	ASCII 4	: 00000000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 35: 
+	Type Nr	: 00010002
+	Instance Nr	: 00000001
+	Version Nr	: 02000000
+	Low addr range	: 00200000
+	High addr range	: 00200fff
+	Interrupt Mask	: 00000005
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49494943
+	ASCII 4	: 434c4f43
+	ASCII 5	: 4b000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 36: 
+	Type Nr	: 00010003
+	Instance Nr	: 00000000
+	Version Nr	: 02000000
+	Low addr range	: 00160000
+	High addr range	: 0016ffff
+	Interrupt Mask	: 00000003
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49554152
+	ASCII 4	: 54474e53
+	ASCII 5	: 53310000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 37: 
+	Type Nr	: 00010003
+	Instance Nr	: 00000001
+	Version Nr	: 02000000
+	Low addr range	: 00170000
+	High addr range	: 0017ffff
+	Interrupt Mask	: 00000004
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49554152
+	ASCII 4	: 54474e53
+	ASCII 5	: 53320000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 38: 
+	Type Nr	: 00010003
+	Instance Nr	: 00000002
+	Version Nr	: 02000000
+	Low addr range	: 00180000
+	High addr range	: 0018ffff
+	Interrupt Mask	: 00000005
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49554152
+	ASCII 4	: 544d4143
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 39: 
+	Type Nr	: 00010003
+	Instance Nr	: 00000003
+	Version Nr	: 02000000
+	Low addr range	: 00190000
+	High addr range	: 0019ffff
+	Interrupt Mask	: 0000000a
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49554152
+	ASCII 4	: 54726573
+	ASCII 5	: 65727665
+	ASCII 6	: 64000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 40: 
+	Type Nr	: 00010003
+	Instance Nr	: 00000004
+	Version Nr	: 02000000
+	Low addr range	: 001a0000
+	High addr range	: 001affff
+	Interrupt Mask	: 00000013
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49554152
+	ASCII 4	: 54657874
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 41: 
+	Type Nr	: 00010004
+	Instance Nr	: 00000000
+	Version Nr	: 03000000
+	Low addr range	: 00300000
+	High addr range	: 0030ffff
+	Interrupt Mask	: 00000008
+	Sensitivity Mask	: 00000003
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49485749
+	ASCII 4	: 43415000
+	ASCII 5	: 00000000
+	ASCII 6	: 00000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+Core 42: 
+	Type Nr	: 00010005
+	Instance Nr	: 00000000
+	Version Nr	: 03020000
+	Low addr range	: 00310000
+	High addr range	: 0031ffff
+	Interrupt Mask	: 00000009
+	Sensitivity Mask	: 00000002
+	ASCII 1	: 58696c69
+	ASCII 2	: 6e784158
+	ASCII 3	: 49517561
+	ASCII 4	: 64535049
+	ASCII 5	: 666c6173
+	ASCII 6	: 68000000
+	ASCII 7	: 00000000
+	ASCII 8	: 00000000
+	ASCII 9	: 00000000
+ppsslave: enable: 00000001
+ppsslave: error status: 00000000
+ppsslave: polarity: 00000001
+ppsslave: version: 00010000
+ppsslave: pulse width: 000003ff
+ppsslave: cable delay: 00000000
+smaselector 1: Input Select: 80018000
+smaselector 1: Output Select: 80048001
+smaselector 1: Version: 00010001
+smaselector 1: Input Stat: 00000011
+smaselector 2: Input Select: 00000000
+smaselector 2: Output Select: 00000000
+smaselector 2: Version: 00010001
+signal_generator_r1: valid and enable control: 00000000
+signal_generator_r2: valid and enable control: 00000000
+signal_generator_r3: valid and enable control: 00000000
+signal_generator_r4: valid and enable control: 00000000
+signal_generator_r1: version: 00010000
+signal_generator_r2: version: 00010000
+signal_generator_r3: version: 00010000
+signal_generator_r4: version: 00010000
+adjustable clk: control: 80000001
+adjustable clk: status: 00000000
+adjustable clk: adj multiplexer sel: 00010001
+adjustable clk: version: 00010000
+adjustable clk: current time ns: 2ab36ec4
+adjustable clk: current time s: 674871fc
+adjustable clk: adjust time ns: 2ab1dfc8
+adjustable clk: adjust time s: 674871fc
+adjustable clk: adjust offset ns: 00000000
+adjustable clk: adjust offset interval ns s: 00000000
+adjustable clk: adjust drift ns: 00000000
+adjustable clk: adjust drift interval ns s: 00000000
+adjustable clk: in sync threshold: 000001f4
+adjustable clk: Offset P: 00002000
+adjustable clk: Offset I: 00001000
+adjustable clk: Drift  P: 00000000
+adjustable clk: Drift  I: 00000000
+adjustable clk: corrected offset: 00000000
+adjustable clk: corrected drift: 00000000
+timestamper_gnss1pps: valid and enable control: 00000000
+timestamper_gnss1pps: version: 00010000
+timestamper_gnss1pps: event counter: 00000000
+timestamper_gnss1pps: count: 00000000
+timestamper_gnss1pps: timestamp nanosec: 00000000
+timestamper_gnss1pps: timestamp sec: 00000000
+timestamper_gnss1pps: datawidth: 00000000
+timestamper_1: valid and enable control: 00000000
+timestamper_1: version: 00010000
+timestamper_1: event counter: 00000000
+timestamper_1: count: 00000000
+timestamper_1: timestamp nanosec: 00000000
+timestamper_1: timestamp sec: 00000000
+timestamper_1: datawidth: 00000000
+timestamper_fpgapps: valid and enable control: 00000000
+timestamper_fpgapps: version: 00010000
+timestamper_fpgapps: event counter: 00000000
+timestamper_fpgapps: count: 00000000
+timestamper_fpgapps: timestamp nanosec: 00000000
+timestamper_fpgapps: timestamp sec: 00000000
+timestamper_fpgapps: datawidth: 00000000
