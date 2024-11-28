@@ -1,0 +1,2 @@
+2024.11.31 Version 0x000b
+- Preparing for No Vendor IP release

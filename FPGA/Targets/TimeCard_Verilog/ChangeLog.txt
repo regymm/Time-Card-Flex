@@ -1,0 +1,2 @@
+2024.10.31 Version 0x000a
+- Fully Verilog release
