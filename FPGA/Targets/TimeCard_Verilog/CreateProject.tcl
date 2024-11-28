@@ -32,7 +32,7 @@ set origin_dir $ScriptFolder
 set orig_proj_dir "[file normalize "$origin_dir"]"
 
 # Set the project name
-set _xil_proj_name_ "TimeCard"
+set _xil_proj_name_ "TimeCard_Verilog"
 
 
 # Create project
@@ -67,32 +67,27 @@ set_property "ip_repo_paths" "$origin_dir/../../../" $obj
 update_ip_catalog -rebuild
 
 # Add new sourses
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/SmaSelector/SmaSelector_v.v 
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/SmaSelector/SmaSelector.sv
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/ClockDetector/ClockDetector_v.v
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/ClockDetector/ClockDetector.sv
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Package/TimeCard_Package.svh
-set_property file_type SystemVerilog [get_files  /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Package/TimeCard_Package.svh]
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/FpgaVersion/FpgaVersion.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/FpgaVersion/FpgaVersion_v.v}
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Modules/BufgMux/BufgMux_IPI.v
-#remove_files  /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Modules/BufgMux/BufgMux_IPI.vhd
-#update_module_reference {TimeCard_BufgMux_IPI_0_0 TimeCard_BufgMux_IPI_1_0 TimeCard_BufgMux_IPI_2_0}
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Implementation/Xilinx/TimeCard_Verilog/Top/TimeCardTop.v
-#remove_files  /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Implementation/Xilinx/TimeCard/Top/TimeCardTop.vhd
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/DummyAxiSlave/DummyAxiSlave.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Modules/BufgMux/BufgMux_IPI.v /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/PpsSourceSelector/PpsSourceSelector.v /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/FpgaVersion/FpgaVersion.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/DummyAxiSlave/DummyAxiSlave_v.v /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/MsiIrq/MsiIrq.v /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/FpgaVersion/FpgaVersion_v.v}
-add_files -norecurse /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/CommunicationSelector/CommunicationSelector.v
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/FrequencyCounter/FrequencyCounter.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/FrequencyCounter/FrequencyCounter_v.v}
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/CoreList/CoreList.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/CoreList/CoreList_v.v}
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/PpsGenerator/PpsGenerator.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/PpsGenerator/PpsGenerator_v.v}
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/PpsGenerator/PpsGenerator.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/PpsGenerator/PpsGenerator_v.v}
-#set_property -dict [list CONFIG.CoreListBytes_Con {2688} CONFIG.RomAddrWidth_Con {10} CONFIG.CoreListFile_Processed {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Implementation/Xilinx/TimeCard/CoreListFile.dat}] [get_bd_cells CoreList_v_0]
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/PpsSlave/PpsSlave.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/PpsSlave/PpsSlave_v.v}
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/AdjustableClock/AdjustableClock.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/AdjustableClock/AdjustableClock_v.v}
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/SignalGenerator/SignalGenerator.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/SignalGenerator/SignalGenerator_v.v}
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/SignalTimestamper/SignalTimestamper.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/SignalTimestamper/SignalTimestamper_v.v}
+add_files -norecurse ../../IPs_TC/SmaSelector/SmaSelector_v.v 
+add_files -norecurse ../../IPs_TC/SmaSelector/SmaSelector.sv
+add_files -norecurse ../../IPs_TC/ClockDetector/ClockDetector_v.v
+add_files -norecurse ../../IPs_TC/ClockDetector/ClockDetector.sv
+add_files -norecurse ../../IPs_TC/TimeCard_Package.svh
+set_property file_type SystemVerilog [get_files  ../../IPs_TC/TimeCard_Package.svh]
+add_files -norecurse {../../IPs_TC/FpgaVersion/FpgaVersion.sv ../../IPs_TC/FpgaVersion/FpgaVersion_v.v}
+add_files -norecurse ./Top/TimeCardTop.v
+add_files -norecurse {../../IPs_TC/DummyAxiSlave/DummyAxiSlave.sv ../../IPs_TC/BufgMux_IPI.v ../../IPs_TC/PpsSourceSelector/PpsSourceSelector.v ../../IPs_TC/FpgaVersion/FpgaVersion.sv ../../IPs_TC/DummyAxiSlave/DummyAxiSlave_v.v ../../IPs_TC/MsiIrq/MsiIrq.v ../../IPs_TC/FpgaVersion/FpgaVersion_v.v}
+add_files -norecurse ../../IPs_TC/CommunicationSelector/CommunicationSelector.v
+add_files -norecurse {../../IPs_TC/FrequencyCounter/FrequencyCounter.sv ../../IPs_TC/FrequencyCounter/FrequencyCounter_v.v}
+add_files -norecurse {../../IPs_TC/CoreList/CoreList.sv ../../IPs_TC/CoreList/CoreList_v.v}
+add_files -norecurse {../../IPs_TC/PpsGenerator/PpsGenerator.sv ../../IPs_TC/PpsGenerator/PpsGenerator_v.v}
+add_files -norecurse {../../IPs_TC/PpsGenerator/PpsGenerator.sv ../../IPs_TC/PpsGenerator/PpsGenerator_v.v}
+add_files -norecurse {../../IPs_TC/PpsSlave/PpsSlave.sv ../../IPs_TC/PpsSlave/PpsSlave_v.v}
+add_files -norecurse {../../IPs_TC/AdjustableClock/AdjustableClock.sv ../../IPs_TC/AdjustableClock/AdjustableClock_v.v}
+add_files -norecurse {../../IPs_TC/SignalGenerator/SignalGenerator.sv ../../IPs_TC/SignalGenerator/SignalGenerator_v.v}
+add_files -norecurse {../../IPs_TC/SignalTimestamper/SignalTimestamper.sv ../../IPs_TC/SignalTimestamper/SignalTimestamper_v.v}
 update_compile_order -fileset sources_1
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/TodSlave/TodSlave.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/TodSlave/TodSlave_v.v}
-add_files -norecurse {/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/ConfMaster/ConfMaster.sv /home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Ips/ConfMaster/ConfMaster_v.v}
+add_files -norecurse {../../IPs_TC/TodSlave/TodSlave.sv ../../IPs_TC/TodSlave/TodSlave_v.v}
+add_files -norecurse {../../IPs_TC/ConfMaster/ConfMaster.sv ../../IPs_TC/ConfMaster/ConfMaster_v.v}
 
 
 # Set 'sources_1' fileset object
@@ -297,13 +292,13 @@ puts "INFO: Project created:${_xil_proj_name_}"
 # --! write_bd_tcl $proj_dir/../Bd/TimeCardBd.tcl -force -no_ip_version
 source "$origin_dir/Bd/TimeCardBd.tcl"
 update_compile_order -fileset sources_1
-make_wrapper -files [get_files $origin_dir/TimeCard/TimeCard.srcs/sources_1/bd/TimeCard/TimeCard.bd] -top
-add_files -norecurse $origin_dir/TimeCard/TimeCard.srcs/sources_1/bd/TimeCard/hdl/TimeCard_wrapper.vhd
+make_wrapper -files [get_files $origin_dir/TimeCard_Verilog/TimeCard_Verilog.srcs/sources_1/bd/TimeCard/TimeCard.bd] -top
+add_files -norecurse $origin_dir/TimeCard_Verilog/TimeCard_Verilog.srcs/sources_1/bd/TimeCard/hdl/TimeCard_wrapper.vhd
 # Set 'sources_1' fileset properties
 update_compile_order -fileset sources_1
-# Update the relative paths of the text files
-#set_property CONFIG.ConfigFile_Gen $origin_dir/DefaultConfigFile.txt [get_bd_cells /TC_ConfMaster_0]
-#set_property CONFIG.CoreListFile_Gen $origin_dir/CoreListFile.txt [get_bd_cells /TC_CoreList_0]
+# Update the relative paths of the text files, processed
+set_property -dict [list CONFIG.Configlistsize {14} Romaddrwidth_Con {4} CONFIG.ConfigFile_Processed {$origin_dir/DefaultConfigFile.dat}] [get_bd_cells /ConfMaster_v_0]
+set_property -dict [list CONFIG.CoreListBytes_Con {2688} CONFIG.RomAddrWidth_Con {10} CONFIG.CoreListFile_Processed {$origin_dir/CoreListFile.dat}] [get_bd_cells /CoreList_v_0]
 
 # Suppress warnings 
 
