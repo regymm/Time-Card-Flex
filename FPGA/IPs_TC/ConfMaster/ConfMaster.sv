@@ -1,3 +1,13 @@
+// This file is written with the help of vhd2vl 3.0 VHDL to Verilog RTL translator
+// vhd2vl is Free (libre) Software:
+//   Copyright (C) 2001-2023 Vincenzo Liguori - Ocean Logic Pty Ltd
+//     http://www.ocean-logic.com
+//   Modifications Copyright (C) 2006 Mark Gonzales - PMC Sierra Inc
+//   Modifications (C) 2010 Shankar Giri
+//   Modifications Copyright (C) 2002-2023 Larry Doolittle
+//     http://doolittle.icarus.com/~larry/vhd2vl/
+//   Modifications (C) 2017 Rodrigo A. Melo
+
 //*****************************************************************************************
 // Project: Time Card
 //
