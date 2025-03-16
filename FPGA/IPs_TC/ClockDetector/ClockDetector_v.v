@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 module ClockDetector_v #(
 parameter [3:0] ClockSelect_Gen=4'b0000,
 parameter [1:0] PpsSelect_Gen=2'b00

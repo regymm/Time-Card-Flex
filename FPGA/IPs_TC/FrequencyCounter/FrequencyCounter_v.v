@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 module FrequencyCounter_v #(
 parameter OutputPolarity_Gen="true"
 )(

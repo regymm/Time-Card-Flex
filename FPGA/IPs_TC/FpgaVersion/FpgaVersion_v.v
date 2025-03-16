@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 module FpgaVersion_v #(
 parameter [15:0] VersionNumber_Gen=16'h000a,
 parameter [15:0] VersionNumber_Golden_Gen=16'h000a

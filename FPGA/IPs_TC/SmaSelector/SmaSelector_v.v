@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 /*
 choice_pairs_2e41af12
 "Disable Output" 0x0000

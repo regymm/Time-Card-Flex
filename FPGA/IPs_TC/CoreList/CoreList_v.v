@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 module CoreList_v #(
 parameter CoreListBytes_Con = 0,
 parameter RomAddrWidth_Con = 0,

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 module PpsGenerator_v #(
 parameter [31:0] ClockPeriod_Gen=20,
 parameter CableDelay_Gen="true",

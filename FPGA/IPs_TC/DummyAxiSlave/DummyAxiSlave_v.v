@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 /**
  * File              : DummyAxiSlave_v.v
  * License           : GPL-3.0-or-later

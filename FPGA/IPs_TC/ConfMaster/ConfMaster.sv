@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 // This file is written with the help of vhd2vl 3.0 VHDL to Verilog RTL translator
 // vhd2vl is Free (libre) Software:
 //   Copyright (C) 2001-2023 Vincenzo Liguori - Ocean Logic Pty Ltd

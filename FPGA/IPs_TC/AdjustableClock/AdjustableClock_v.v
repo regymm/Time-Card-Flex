@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 module AdjustableClock_v #(
 parameter [31:0] ClockPeriod_Gen=20, // 50MHz system clock, period in nanoseconds
 parameter [31:0] ClockInSyncThreshold_Gen=500, // threshold in nanosecond

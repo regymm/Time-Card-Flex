@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 module ConfMaster_v #(
 parameter ConfigListSize = 14,
 parameter RomAddrWidth_Con = 4,
