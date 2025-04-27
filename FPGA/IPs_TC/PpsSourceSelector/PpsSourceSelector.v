@@ -92,7 +92,7 @@ reg [1:0] MacSourceSelect_DatReg = 1'b0;
   end
 
   // Check that each PPS input has a frequency of ~1 Hz for at least PpsAvailableThreshold_Gen seconds in sequence
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       PpsSourceAvailable_DatReg <= {3{1'b0}};
       SmaPps_EvtReg <= 1'b0;
@@ -235,7 +235,7 @@ reg [1:0] MacSourceSelect_DatReg = 1'b0;
   end
 
   // Select the Slave PPS and MAC PPS sources according to configuration
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       PpsSlaveSourceSelect_DatReg <= {2{1'b0}};
       MacSourceSelect_DatReg <= {2{1'b0}};

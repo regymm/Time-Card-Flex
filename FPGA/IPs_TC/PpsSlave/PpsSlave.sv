@@ -313,7 +313,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
   //    - the input delay, which is provided as generic input
   //    - the cable delay, which is received by the AXI register (and enabled by a generic input)
   // Validate the input pulse's period and width by counting their duration in milliseconds.
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       Timestamp_ValReg <= 1'b0;
       Timestamp_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -460,7 +460,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
   end
 
   // Calculate the new offset
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       OffsetCalcState_StaReg <= WaitTimestamp_St;
       OffsetCalcActive_ValReg <= 1'b0;
@@ -654,7 +654,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
   end
 
   // Calculate the new drift
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       DriftCalcState_StaReg <= WaitTimestamp_St;
       DriftCalcActive_ValReg <= 1'b0;
@@ -950,7 +950,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
   end
 
   // Assign the PI factors if they are set dynamically. Otherwise, use the default values.
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       OffsetFactorP_DatReg <= OffsetFactorP_Con;
       OffsetFactorI_DatReg <= OffsetFactorI_Con;
@@ -966,7 +966,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
   end
 
   // Calculate the PI servo offset correction
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       PI_OffsetState_StaReg <= Idle_St;
       PI_OffsetAdjustment_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -1100,7 +1100,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
   end
 
   // Calculate the PI servo drift correction
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       PI_DriftState_StaReg <= Idle_St;
       PI_DriftAdjustment_Nanosecond_DatReg <= {((NanosecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -1242,7 +1242,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
   end
 
   // Access configuration and monitoring registers via an AXI4L slave
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

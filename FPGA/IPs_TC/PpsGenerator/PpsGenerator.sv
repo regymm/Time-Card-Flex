@@ -173,7 +173,7 @@ reg [31:0] PpsGenCableDelay_DatReg;
   // be later used by the high-resolution clock to set a motre accurate activation time.
   // The deactivation of the pulse is calculated by a free-running counter (i.e. not aligned 
   // to the local time).
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       PpsError_Reg <= 1'b0;
       Pps_Reg <= 1'b0;
@@ -255,7 +255,7 @@ reg [31:0] PpsGenCableDelay_DatReg;
 
   // Access configuration and monitoring registers via an AXI4L slave
   //variable TempAddress                            : std_logic_vector(31 downto 0) := (others => '0');    
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

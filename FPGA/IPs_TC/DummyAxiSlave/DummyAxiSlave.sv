@@ -88,7 +88,7 @@ module DummyAxiSlave #(
 	assign AxiReadDataData_DatOut = AxiReadDataData_DatReg;
 
   // Axi process for reading and writing the register addresses
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

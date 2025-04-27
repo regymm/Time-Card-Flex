@@ -553,7 +553,7 @@ reg [31:0] TodSlaveSatNumber_DatReg;
   assign TimeAdjustment_ValOut = TimeAdjustment_ValReg;
 
   // metastability registers
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       RxUart_ShiftReg <= {2{1'b0}};
       RxUart_DatReg <= 1'b0;
@@ -570,7 +570,7 @@ reg [31:0] TodSlaveSatNumber_DatReg;
   end
 
   // RxUart FSM. The UART message sequence is Start(1bit)=>Data(8bits)=>Stop(1bit) (no parity)
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       UartRxState_StaReg <= Idle_St;
       MsgDataValid_ValReg <= 1'b0;
@@ -660,7 +660,7 @@ reg [31:0] TodSlaveSatNumber_DatReg;
   //   - from Alarms Info         => pending Leap Second, Jam Indication, Spoof Indication, Antenna Status
   //   - from Position Info       => Gnss fix of the antenna
   //   - from Receiver Info       => Gnss fix OK of the antenna
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       UbxPayloadCount_CntReg <= 16'h0000;
       UbxNavSat_Length_DatReg <= 16'h0000;
@@ -1641,7 +1641,7 @@ reg [31:0] TodSlaveSatNumber_DatReg;
 
   // Each supported message type is expected to be received once per second. 
   // If a valid message type is not received for 3 seconds, then the valid flag of its corresponding register will be deactivated.
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       UbxNavSat_TimeoutCounter_CntReg <= 0;
       UbxHwMon_TimeoutCounter_CntReg <= 0;
@@ -1841,7 +1841,7 @@ reg [31:0] TodSlaveSatNumber_DatReg;
   // Convert the UTC to TAI and change the time format from 0xYYYYMMDDHHmmSS to 0xSSSSSSSS
   // The TAI is generated happens if a new valid time is received and the last received UTC offset is also valid
   // The TAI is not generated if the timestamp is right before or after a potential leap second update
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       ClockTime_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
       TimeAdjustment_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -2041,7 +2041,7 @@ reg [31:0] TodSlaveSatNumber_DatReg;
   end
 
   // Access configuration and monitoring registers via an AXI4L slave
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

@@ -175,7 +175,7 @@ reg [31:0] ClkDetVersion_DatReg;
   endgenerate
   // For each clock input, check its availability, based on the toggling of its slow clock
   generate for (i=0; i <= NumberOfClocks_Con - 1; i = i + 1) begin: ClockDetect_Gen
-      always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+      always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
       if(SysRstN_RstIn == 1'b0) begin
         MhzSlowClk_Clk_FF[i] <= 1'b0;
         MhzSlowClk_Clk_FFF[i] <= 1'b0;
@@ -197,7 +197,7 @@ reg [31:0] ClkDetVersion_DatReg;
   endgenerate
   integer j;
   // Select the clock based on the availability, the default priority and, optionally, on a manual selection
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       ClkSelected_Dat <= {((NumberOfClocks_Con - 1)-(0)+1){1'b0}};
       ClkSelected_DatReg <= {((NumberOfClocks_Con - 1)-(0)+1){1'b0}};
@@ -256,7 +256,7 @@ reg [31:0] ClkDetVersion_DatReg;
   end
 
   // Access configuration and monitoring registers via an AXI4L slave
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

@@ -198,7 +198,7 @@ reg [31:0] TimestamperData_DatReg;  // unused
   //    - the timestamping at the high resolution clock domain and the corresponding register delays for switching the clock domains
   //    - the input delay, which is provided as generic input
   //    - the cable delay, which is received by the AXI register (and enabled by a generic input)
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       Timestamp_ValReg <= 1'b0;
       Timestamp_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -265,7 +265,7 @@ reg [31:0] TimestamperData_DatReg;  // unused
   end
 
   // AXI register access
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

@@ -40,6 +40,7 @@
 // received by the AXI registers are forwarded to the output.                            --
 
 `include "TimeCard_Package.svh"
+import timecard_package::*;
 
 module AdjustableClock #(
 parameter [31:0] ClockPeriod_Gen=20, // 50MHz system clock, period in nanoseconds
@@ -164,7 +165,6 @@ input wire AxiReadDataReady_RdyIn,
 output wire [1:0] AxiReadDataResponse_DatOut,
 output wire [31:0] AxiReadDataData_DatOut
 );
-import timecard_package::*;
 
 parameter [7:0]ClockMajorVersion_Con = 0;
 parameter [7:0]ClockMinorVersion_Con = 1;
@@ -402,7 +402,7 @@ reg [31:0] ClockStatusDrift_DatReg;
   //      - "the original period", if an offset and a drift adjustment is applied at the current clock cycle, with different signs
 	//reg [AdjustmentIntervalWidth_Con-1:0]OffsetAdjustmentMux_IntervalTicks_DatVar;
 	//reg [AdjustmentIntervalWidth_Con-1:0]DriftAdjustmentMux_IntervalTicks_DatVar;
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     int OffsetAdjustmentMux_IntervalTicks_DatVar;
     int DriftAdjustmentMux_IntervalTicks_DatVar;
     if(SysRstN_RstIn == 1'b0) begin
@@ -742,7 +742,7 @@ reg [31:0] ClockStatusDrift_DatReg;
 
   // The process provides the adjustable clock ClockTime. At each system clock cycle the time increases by the period of the system clock,
   // unless an adjustment has to be applied. In this case the time increases by the "adjusted" period of the system clock (max +/- 2ns).
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       ClockTime_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
       ClockTime_Nanosecond_DatReg <= {((NanosecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -789,7 +789,7 @@ reg [31:0] ClockStatusDrift_DatReg;
   // The Insync flag is deactivated, if an offset adjustment bigger than the threshold is received or if a time adjustment is applied (e.g. time jump) or if the clock is disabled.
   // The InHoldover flag is activated, if the adjustable clock has been InSync and an offset adjustment has not been received for a predefined threshold time
   // The InHoldover flag is deactivated, if the adjustable clock goes out of sync or if a time or offset adjustment is received or if the clock is disabled
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       InSync_DatReg <= 1'b0;
       InHoldover_DatReg <= 1'b0;
@@ -840,7 +840,7 @@ reg [31:0] ClockStatusDrift_DatReg;
   end
 
   // Read and Write AXI access of the registers
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

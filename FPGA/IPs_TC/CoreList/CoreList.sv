@@ -127,7 +127,7 @@ reg AxiReadDone_ValReg;
   //      - ByteAddr[1B-18]: 223-192 Sensitivity(4B) 
   //      - ByteAddr[3F-1C]: 511-224 Magic word(max 36B of  ascii chars) 
   // Only word-aligned addresses are accessing the ROM 
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       CoreListReadCompleted_DatReg <= 1'b0;
       AxiWriteAddrReady_RdyReg <= 1'b0;

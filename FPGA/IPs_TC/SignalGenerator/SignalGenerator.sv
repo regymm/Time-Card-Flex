@@ -242,7 +242,7 @@ reg [31:0] SigGenRepeatCount_DatReg;
   // This start/stop procedure is repeated until the pulse count is reached (continuously repetition if the pulse count is '0'). 
   // The pulse generation is disabled if a) the repetition limit is reached b)a time jump happens, c)the initial start time is set to the past (no signal generation) d)the input clock is not active
   // Additionally, in order to increase the accuracy of the generation, when the start/stop time is reached, a shift register indicates how many high resolution clock periods could 'fit' between the start/stop time and the current time.
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       SigGenState_StaReg <= Idle_St;
       ClockTime_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -419,7 +419,7 @@ reg [31:0] SigGenRepeatCount_DatReg;
   end
 
   // AXI register access
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

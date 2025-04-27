@@ -3,7 +3,7 @@ module ConfMaster_v #(
 parameter ConfigListSize = 14,
 parameter RomAddrWidth_Con = 4,
 parameter [31:0] AxiTimeout_Gen=0,
-parameter ConfigFile_Processed="/home/petergu/PTP/Time-Appliance-Project/Time-Card/FPGA/Open-Source/Implementation/Xilinx/TimeCard/DefaultConfigFile.dat",
+parameter ConfigFile_Processed="/dev/null",
 parameter [31:0] ClockPeriod_Gen=20
 )(
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME m_axi_clk, ASSOCIATED_BUSIF m_axi, ASSOCIATED_RESET m_axi_aresetn" *)

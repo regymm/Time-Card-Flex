@@ -140,7 +140,7 @@ reg [31:0] IrqNumber = 0;
   // scale the irq max vector down to proper size
   assign IrqIn_Dat = IrqInMax_Dat[NumberOfInterrupts_Gen - 1:0];
   // Send the interrupt requests one by one to the output (AXI-MSI bridge) and wait until the request is granted.
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       Msi_State_StReg <= Idle_St;
       IrqIn_DatReg <= {((NumberOfInterrupts_Gen - 1)-(0)+1){1'b0}};

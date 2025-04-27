@@ -152,7 +152,7 @@ reg [31:0] FreqCntVersion_DatReg;
   // At the beginning of a new second the period counter (i.e. the number of seconds over which the frequency is measured) is updated.
   // When a measurement period has completed, a flag is raised and the measurement starts over.
   wire [63:0]CntRegPlus = ((FrequencySysClk3_EvtReg == 1'b0 && FrequencySysClk2_EvtReg == 1'b1 && Polarity_Dat == 1'b1) || (FrequencySysClk3_EvtReg == 1'b1 && FrequencySysClk2_EvtReg == 1'b0 && Polarity_Dat == 1'b0)) ? FrequencyCounter_CntReg + 1 : FrequencyCounter_CntReg;
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if((SysRstN_RstIn == 1'b0)) begin
       ClockTime_Second_DatReg <= {((SecondWidth_Con - 1)-(0)+1){1'b0}};
       ClockTime_Nanosecond_DatReg <= {((NanosecondWidth_Con - 1)-(0)+1){1'b0}};
@@ -211,7 +211,7 @@ reg [31:0] FreqCntVersion_DatReg;
   // AXI slave for configuring and supervising the core
   // Enable the core and provide the measurement period
   // Divide the frequency counter by the measurement period and store the result to the register
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

@@ -152,7 +152,7 @@ reg AxiReadDataReady_RdyReg;
   // Bits  63 - 32: Base Address (for read/write commands, else 0)
   // Bits  95 - 64: Reg Address (for read/write commands, else 0)
   // Bits 127 - 96: Data (for write command) or time (in ns, for wait command)
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       ConfigState_StaReg <= Idle_St;
       ConfigIndex_CntReg <= 0;

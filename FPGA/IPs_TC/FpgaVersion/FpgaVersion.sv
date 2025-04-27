@@ -99,7 +99,7 @@ module FpgaVersion #(
   assign AxiReadDataResponse_DatOut = AxiReadDataResponse_DatReg;
   assign AxiReadDataData_DatOut = AxiReadDataData_DatReg;
   // AXI register access
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin : P1
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin : P1
     if((SysRstN_RstIn == 1'b0)) begin
       AxiWriteAddrReady_RdyReg <= 1'b0;
       AxiWriteDataReady_RdyReg <= 1'b0;

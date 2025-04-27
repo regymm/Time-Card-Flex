@@ -357,7 +357,7 @@ reg [31:0] SmaSelectorVersion2_DatReg;
   assign Axi2ReadDataData_DatOut = Axi2ReadDataData_DatReg;
 
   // Process to enable the 10 MHz clock
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       Sma10MHzSourceEnable_EnReg <= 1'b0;
     end else begin
@@ -372,7 +372,7 @@ reg [31:0] SmaSelectorVersion2_DatReg;
 
   // Access configuration and monitoring registers via the AXI4L slave 1
   // Set the SMA Input 1/2 and SMA Output 3/4
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       Axi1WriteAddrReady_RdyReg <= 1'b0;
       Axi1WriteDataReady_RdyReg <= 1'b0;
@@ -458,7 +458,7 @@ reg [31:0] SmaSelectorVersion2_DatReg;
 
   // Access configuration and monitoring registers via the AXI4L slave 2
   // Set the SMA Input 3/4 and SMA Output 1/2
-  always @(posedge SysClk_ClkIn, posedge SysRstN_RstIn) begin
+  always @(posedge SysClk_ClkIn, negedge SysRstN_RstIn) begin
     if(SysRstN_RstIn == 1'b0) begin
       Axi2WriteAddrReady_RdyReg <= 1'b0;
       Axi2WriteDataReady_RdyReg <= 1'b0;
