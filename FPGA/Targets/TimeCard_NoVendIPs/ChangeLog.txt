@@ -1,2 +1,2 @@
-2024.11.31 Version 0x000b
-- Preparing for No Vendor IP release
+2025.04.28 Version 0x000c
+- No Vendor IP release, using pcie_7x, custom uart_16550, and ZipCPU's AXI parts
