@@ -1,0 +1,7 @@
+*.cmd
+Module.symvers
+modules.order
+ptp_ocp.ko
+ptp_ocp.mod
+ptp_ocp.mod.c
+*.o
