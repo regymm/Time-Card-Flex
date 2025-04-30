@@ -315,7 +315,7 @@ wire Clk_TxScl_t;
     .StartUpIo_cfgmclk(StartUpIo_cfgmclk),
     .StartUpIo_preq(StartUpIo_preq),
     .GpioGnss_DatOut(GpioGnss_DatOut),
-	.GpioMac_DatIn({MacBite_DatIn, MacAlarm_DatIn}),
+    .GpioMac_DatIn({MacBite_DatIn, MacAlarm_DatIn}),
     // GpioMac_DatIn_tri_i(0)      => MacAlarm_DatIn,
     // GpioMac_DatIn_tri_i(1)      => MacBite_DatIn,
     .SmaIn1_DatIn(SmaIn1_DatIn),
