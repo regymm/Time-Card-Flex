@@ -91,7 +91,7 @@ parameter OutputPulseWidthMillsecond_Con = 500;
 // PPS Generator version
 parameter [7:0]PpsGenMajorVersion_Con = 0;
 parameter [7:0]PpsGenMinorVersion_Con = 1;
-parameter [16:0]PpsGenBuildVersion_Con = 0;
+parameter [15:0]PpsGenBuildVersion_Con = 0;
 parameter [31:0]PpsGenVersion_Con = {PpsGenMajorVersion_Con,PpsGenMinorVersion_Con,PpsGenBuildVersion_Con}; 
 // AXI regs                                                       Addr       , Mask       , RW  , Reset
 //constant PpsGenControl_Reg_Con                  : Axi_Reg_Type:= (x"00000000", x"00000001", Rw_E, x"00000000");
