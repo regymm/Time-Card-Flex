@@ -4,7 +4,7 @@ Upstream and relevants: [Open Compute Project Time-Applicance-Project](https://g
 PTP gateware running on the OCP-TAP Time Card and more. PTP grandmaster clock at home. Aiming at a fully-open-source & affordable timing infrastructure! 
 
 [TimeCard gateware all-verilog](FPGA/Targets/TimeCard_Verilog) -- this works with default Linux kernel ptp_ocp driver. 
-[TimeCard gateware with no vendor (Xilinx) IPs](FPGA/Targets/TimeCard_NoVendIPs) -- recommended to start here! 
+[TimeCard gateware with no vendor IPs](FPGA/Targets/TimeCard_NoVendIPs) -- recommended to start here! 
 
 [Setup and Usage](DOC/Setup_and_Usage.md): full development flow from building firmware to comparing PPS edges. 
 
