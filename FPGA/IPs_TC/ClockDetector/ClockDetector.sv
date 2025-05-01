@@ -115,7 +115,7 @@ reg [1:0] ClockSelection_StateStReg;  // Manual Clock selection
 wire [NumberOfClocks_Con - 1:0] ClkManualSelect_Dat; 
 
 // AXI signals and regs
-reg Axi_AccessState_StaReg = Axi_AccessState_Type_Rst_Con;
+reg [1:0]Axi_AccessState_StaReg = Axi_AccessState_Type_Rst_Con;
 reg AxiWriteAddrReady_RdyReg;
 reg AxiWriteDataReady_RdyReg;
 reg AxiWriteRespValid_ValReg;
