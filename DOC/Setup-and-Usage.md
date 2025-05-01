@@ -14,11 +14,11 @@ vivado -mode batch -source TimeCard_NoVendIPs.tcl
 
 ​	Program bitstream with Hardware Manager, OpenFPGALoader, or program it to QSPI Flash on board. 
 
-**b.** Kernel driver. Clone the repo on target machine with Time Card installed. 
+**b.** Kernel driver. Clone the repo on target machine with Time Card installed. In the `DRV` directory, run `sudo ./remake`. Slightly change the script if running on an unlisted Linux distro. 
 
 *Reminder:* 
 
-Don't plug-and-play PCIe drivers. Reboot the machine instead. 
+Plug-and-play PCIe devices probably works, but it's not very good. BAR changes can't be reflected, at least. Reboot the machine instead. 
 
 ### 2.  Time Card standalone verification
 
@@ -47,7 +47,7 @@ phc2sys[168.416]: CLOCK_REALTIME phc offset       -11 s2 freq     +81 delay   30
 phc2sys[169.417]: CLOCK_REALTIME phc offset        32 s2 freq    +121 delay   3113
 ```
 
-​	This direct sync from /dev/ptpX is TAI time, differing 37s from UTC. As leap second is being deprecated, this 37s might never change again. Last leap second was in 2017. 懐かしいなぁ
+​	This direct sync from /dev/ptpX is TAI time, differing 37s from UTC. Last leap second was in 2017. 懐かしいなぁ
 
 ​	`sudo ntpd -qg` result: `ntpd: time set -36.999634s`. Seems NTP is also quite accurate (usually 1-5 ms). I'm using a wired ethernet with 5 ms ping to google.com. 
 
@@ -60,6 +60,8 @@ phc2sys[169.417]: CLOCK_REALTIME phc offset        32 s2 freq    +121 delay   31
 ​	`echo OUT: PHC >> /sys/class/timecard/ocp0/sma1`
 
 ​	`echo OUT: GNSS1 >> /sys/class/timecard/ocp0/sma2`
+
+![](./IMG/PPS.jpg)
 
 ​	Disconnect GPS antenna, GNSS1 PPS will disappear after a while. Connect back antenna, PPS signal will appear after a while, jumping near the PHC PPS a while, and become (relatively) stable again. When GPS signal is lost, PHC PPS is maintained by local OCXO or atomic clock (holdover). A good holdover is like 1.5-8 us per day, probably not on this setup. 
 
@@ -132,9 +134,19 @@ Card front view, Ground Pin: Left Top, SDP1 Pin: Right Middle.
 
 **a.** On RPi, a `sudo ntpd -qg` NTP sync shows millisecond-level correct time. 
 
-**b.** Comparing falling edge of i210 on RPi, and PHC PPS from Time Card shows microsecond-level accuracy (~2 us in my setup). 
+**b.** Comparing falling edge of i210 on RPi, and PHC PPS from Time Card shows microsecond-level accuracy (~1.5 us in my setup). 
 
-**c.** Where's the 2 us coming from? 
+![](IMG/RPI5_PHC2SYS.png)
+
+**c.** Where's the 1 us coming from? I did a `phc_ctl` check:
+
+```
+❯ sudo phc_ctl /dev/ptp0 cmp; phc_ctl /dev/ptp5 cmp; 
+phc_ctl[8643.511]: offset from CLOCK_REALTIME is -36999998808ns
+phc_ctl[8643.513]: offset from CLOCK_REALTIME is -36999999977ns
+```
+
+The `ptp0` from i210 has a deviation from system clock (being synced with phc2sys), while the `ptp5` from Time Card is more accurate. And the offset is similar to the delay on the scope. This indicate the phc2sys card-to-card copy has a us-level delay. 
 
 *Ref:*
 
@@ -217,7 +229,7 @@ Half of timestamps are SKIP-ed, somehow because i210 always stamps on both edges
 
 Now, I can reach **~20 ns** between Time Card PPS and i210 on Raspberry Pi PPS, wired by a ordinary Ethernet cable. Probably, **PCIe PTM** is required for further accuracy. 
 
-![](IMG/RPI5.png)
+![](IMG/RPI5.jpg)
 
 *Ref:* 
 
@@ -271,6 +283,10 @@ periodic output request okay
 ```
 
 The CM5 has a notoriously short ~4us pulse, during debug, I need to trigger using this pulse just to know it's there. 
+
+![](./IMG/CM5.jpg)
+
+The result is a ~170 ns offset even with ts2phc: this probably indicates the old Intel i210 outperforms the BCM54210 PHY on RPi CM5. 
 
 *Ref:*
 

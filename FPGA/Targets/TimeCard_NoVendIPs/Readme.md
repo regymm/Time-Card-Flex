@@ -1,20 +1,16 @@
 # Open Source Timecard Design Description
 
-## All-Verilog Release
+## No Vendor IP Release
 
-This is a all-verilog release of the Timecard project. All the VHDL code and NetTimeLogic IP cores are reformed as Verilog code and RTL modules. This is the first step towards the goal of a vendor-neutral and Vivado-independence release. 
+This is a no vendor IP release of the Timecard project. No Xilinx proprietary IP is used. Open-source alternatives are used. The block design is got rid of, and a python-based bus wiring helper is WIP. 
 
-In `../../../Ips`, the Verilog code can be found in each IP subdirectories. Usually, a `*.sv` module and a `*_v.v` wrapper is available. The `*_v.v` wrapper can be added to Vivado Block Design as RTL modules, and keeping all the port definations. 
+Upstream repo: [Time-Card](https://github.com/Time-Appliances-Project/Time-Card). AXI interconnects that just work: [ZipCPU](https://github.com/ZipCPU/wb2axip/)
 
-The `CreateProject.tcl` can create the Vivado design. Then, please open the design in Vivado, **Update IP Catalog**, and then generate bitstream. The bitstream was tested on the [OCP-TAP Time Card](https://www.makerfabs.com/ocp-tap-time-card.html). 
-
-Small tools are also added: `ocp-tap-bar-mem.c`, to show all PCIe memory-mapped registers. `upload_to_hw.sh`: PCIe remove and re-probe device. `axi_vip_sim.v`: AXI peripheral simulation using the Verification IP. `configfile_convert.py, corelist_convert.py`: generate parameter files for the ConfMaster and CoreList IPs. 
-
-One hint: on re-creating project or modifying RTL module ports/definitions, the `.Xil` directory needs to be deleted! 
+The `CreateProject.tcl` can be run to create the project, and run synthesis/implementation to generate bitstream. The bitstream was tested on the [OCP-TAP Time Card](https://www.makerfabs.com/ocp-tap-time-card.html). 
 
 This work is kindly sponsored by the [NGI ZERO Entrust fund](https://nlnet.nl/project/PTP-timingcard-gateware/). 
 
-![TimeCardTop-AllVerilog](Additional%20Files/AllVerilog_Bd.png)
+One future plan of this project is to integrate an on-board 10/100/1000M ethernet PHY (or 10 Gbps requires no external PHY), and implement PTP-capable ethernet MAC, as a standalone PTP grandmaster clock. Seems NetTimeLogic [has PMOD ethernet module support in progress](https://www.linkedin.com/posts/nettimelogic-gmbh_fpga-vhdl-embeddedsystems-activity-7318288811707318272-zVQb). 
 
 ## Contents
 
@@ -43,15 +39,12 @@ The following cores are used in the Open Source Timecard design.
 
 |Core|Vendor|Description|
 |----|:----:|-----------|
-|[AXI Memory Mapped to PCI Express](https://www.xilinx.com/products/intellectual-property/axi_pcie.html) |Xilinx|Interface between the AXI4 interface and the Gen2 PCI Express (PCIe) silicon hard core|
-|[AXI GPIO](https://www.xilinx.com/products/intellectual-property/axi_gpio.html) |Xilinx|General purpose input/output interface to AXI4-Lite|
-|[AXI I2C](https://www.xilinx.com/products/intellectual-property/axi_iic.html) |Xilinx| Interface between AXI4-Lite and IIC bus|
-|[AXI UART 16550](https://www.xilinx.com/products/intellectual-property/axi_uart16550.html)|Xilinx|Interface between AXI4-Lite and UART interface|
-|[AXI HWICAP](https://www.xilinx.com/products/intellectual-property/axi_hwicap.html) |Xilinx|AXI4-Lite interface to read and write the FPGA configuration memory through the Internal Configuration Access Port (ICAP)|
-|[AXI Quad SPI Flash](https://www.xilinx.com/products/intellectual-property/axi_quadspi.html) |Xilinx|Interface between AXI4-Lite and Dual or Quad SPI||
-|[AXI Interconnect](https://www.xilinx.com/products/intellectual-property/axi_interconnect.html) |Xilinx|Connection between one or more AXI4 memory-mapped Master devices to one or more memory-mapped Slave devices.|
-|[Clocking Wizard](https://www.xilinx.com/products/intellectual-property/clocking_wizard.html) |Xilinx|Configuration of a clock circuit to user requirements|
-|[Processor System Reset](https://www.xilinx.com/products/intellectual-property/proc_sys_reset.html) |Xilinx|Setting certain parameters to enable/disable features|
+|[pcie_7x](https://github.com/regymm/pcie_7x) |regymm|Interface between the AXI4 Lite interface and the Gen2 PCI Express (PCIe) silicon hard core|
+|[AXI GPIO](https://www.xilinx.com/products/intellectual-property/axi_gpio.html) |regymm|General purpose input/output interface to AXI4-Lite|
+|[AXI UART 16550](../../IPs_3rdParty/Axi16550)|regymm|Interface between AXI4-Lite and UART interface|
+|[AXI Odds and Ends](https://github.com/ZipCPU/wb2axip/) |ZipCPU|AXI Crossbar, AXI clock domain crossing|
+|[MMCM](../../IPs_3rdParty/Xc7Mmcm) |regymm|Configuration of a clock circuit to user requirements|
+|[Processor System Reset](../../IPs_3rdParty/PSReset) |regymm|Setting certain parameters to enable/disable features|
 |[TC Adj. Clock](../../../Ips/AdjustableClock/)|NetTimeLogic|A timer clock in the Second and Nanosecond format that can be frequency and phase adjusted|
 |[TC Signal Timestamper](../../../Ips/SignalTimestamper)|NetTimeLogic|Timestamping of an event signal of configurable polarity and generate interrupts|
 |[TC PPS Generator](../../../Ips/PpsGenerator)|NetTimeLogic|Generation of a Pulse Per Second (PPS) of configurable polarity and aligned to the local clock's new second|
@@ -69,12 +62,6 @@ The following cores are used in the Open Source Timecard design.
 |[TC Dummy Axi Slave](../../../Ips/DummyAxiSlave)|NetTimeLogic|AXI4L slave that is used as a placeholder of an address range|
 |[TC FPGA Version](../../../Ips/FpgaVersion)|NetTimeLogic|AXI register that stores the design's version numbers|
 
-The top-level design description is shown below.
-
-![TimeCardTop](Additional%20Files/TimeCardTop.png) 
-
-*NOTE:* In order to offload the drawing not all the AXI connections are shown, while the IRQ connections to the MSI Control are mentioned directly at the IPs.
-
 The TimeCard runs partially from the 200MHz SOM oscillator. 
 The NetTimeLogic cores with all the high precision parts are running based on the selected clock by the Clock Detector (10 MHz from MAC, SMA, etc.).
 
@@ -89,21 +76,16 @@ The AXI Slave interfaces have the following addresses:
 
 |Slave|AXI Slave interface|Offset Address|High Address|
 |-----|-------------------|--------------|------------|
-|AXI PCIe Control|S_AXI_CTL|0x0001_0000|0x0001_0FFF|
 |TC FPGA Version|axi4l_slave|0x0002_0000|0x0002_0FFF|
 |AXI GPIO Ext|S_AXI|0x0010_0000|0x0010_0FFF|
 |AXI GPIO GNSS/MAC|S_AXI|0x0011_0000|0x0011_0FFF|
 |TC Clock Detector|axi4l_slave|0x0013_0000|0x0013_0FFF|
 |TC SMA Selector|axi4l_slave1|0x0014_0000|0x0014_3FFF|
-|AXI I2C|S_AXI|0x0015_0000|0x0015_FFFF|
 |AXI UART 16550 GNSS1|S_AXI|0x0016_0000|0x0016_FFFF|
 |AXI UART 16550 GNSS2|S_AXI|0x0017_0000|0x0017_FFFF|
 |AXI UART 16550 MAC|S_AXI|0x0018_0000|0x0018_FFFF|
 |AXI UART 16550 ΕΧΤ|S_AXI|0x001Α_0000|0x001Α_FFFF|
-|AXI I2C Clock|S_AXI|0x0020_0000|0x0020_FFFF|
 |TC SMA Selector|axi4l_slave2|0x0022_0000|0x0022_3FFF|
-|AXI HWICAP|S_AXI_LITE|0x0030_0000|0x0030_FFFF|
-|AXI Quad SPI Flash|AXI_LITE|0x0031_0000|0x0031_FFFF|
 |TC Adj. Clock|axi4l_slave|0x0100_0000|0x0100_FFFF|
 |TC Signal TS GNSS1 PPS|axi4l_slave|0x0101_0000|0x0101_FFFF|
 |TC Signal TS1|axi4l_slave|0x0102_0000|0x0102_FFFF|
@@ -129,7 +111,7 @@ The AXI Slave interfaces have the following addresses:
 |TC Frequency Counter 4|axi4l_slave|0x0123_0000|0x0123_FFFF|
 |TC CoreList|axi4l_slave|0x0130_0000|0x0130_FFFF|
 
-The detailed register description of each instance is available at the corresponding core description document (see links at [Chapter 1](#1-design-overview)). 
+The detailed register description of each instance is available at the corresponding core description document (see links at [Chapter 1](#1-design-overview)). Mostly, 0x00xx_xxxx peripherals runs in system 50 MHz clock domain, and 0x01xx_xxxx peripherals runs in the PTP 50 MHz clock domain. 
 
 ### 2.1 FPGA Version Register
 
@@ -141,6 +123,8 @@ E.g.:
 - Register 0x0200_0000 of the Regular image shows: 0x0000_0003
 
 If the lower 16 Bits are 0x0000 the Golden image has booted.
+
+This No Vendor IP release has version 0x0000000a. 
 
 ### 2.2 AXI GPIO Registers
 
@@ -170,8 +154,8 @@ Level interrupts (e.g. AXI UART 16550) are taking at least one round for the nex
 |4|AXI UART 16550 GNSS2|
 |5|AXI UART 16550 MAC or AXI I<sup>2</sup>C OSC|
 |6|TC Signal TS2|
-|7|AXI I2C|
-|8|AXI HWICAP|
+|7| Reserved                                     |
+|8| Reserved                                     |
 |9|AXI Quad SPI Flash|
 |10|Reserved|
 |11|TC Signal Generator1|
@@ -211,139 +195,8 @@ Currently, the following cores are configured at startup by the default configur
 |PPS Generator|Enable with high polarity of the output pulse|
 |PPS Slave|Enable with high polarity of the input pulse|
 |ToD Slave|Enable with high polarity of the UART input|
-|SMA Selector|Set the FPGA PPS and GNSS PPS as SMA outputs|
+|SMA Selector|Set the FPGA PPS (SMA3) and GNSS PPS (SMA4) as SMA outputs|
 
 
 ## 7. Core List 
 The list of the configurable cores (via AXI) is provided by the [TC CoreList](../../../Ips/CoreList) and can be edited by updating the [CoreListFile.txt](CoreListFile.txt).
-## 8. Create FPGA project and binaries
-### 8.1 Create FPGA Project
-The Vivado project was generated with Vivado 2019.1.
-Since the Vivado project is not meant to be stored in a source control system or stored as is in general, a project script was created which will create the Vivado Project from the script.
-
-The script has to be run once to create the project from scratch.
-
-Run this from the Vivado TCL console:
-
-*source /[YOUR_PATH]/Implementation/Xilinx/TimeCard/CreateProject.tcl*
-
-(Alternatively, it can be started via the Tool=>Run Tcl Script… menu in the Vivado GUI)
-
-The script will add all necessary files to the project as well as the constraints so everything is ready to generate a bitstream for the FPGA.
-The project will be generated in the following folder:
-
-*/[YOUR_PATH]/Implementation/Xilinx/TimeCard/TimeCard*
-### 8.2 Synthesis, Implementation and Bitstream generation
-A bitstream generation script runs synthesis and implementation and generates the bitstreams for the specified design runs:
-- The script */[YOUR_PATH]/Implementation/Xilinx/TimeCard/CreateBinaries.tcl* runs the synthesis/implementation of the TimeCardOS design, it generates the  bitstreams and it updates correspondingly the Factory_TimeCardOS.bin
-- The script */[YOUR_PATH]/Implementation/Xilinx/TimeCard/CreateBinariesGolden.tcl* runs the synthesis/implementation of the Golden_TimeCardOS design, it generates the bitstreams and it updates correspondingly the Factory_TimeCardOS.bin
-- The script */[YOUR_PATH]/Implementation/Xilinx/TimeCard/CreateBinariesAll.tcl* runs the synthesis/implementation of both designs, it generates the corresponding bitstreams and it updates correspondingly the Factory_TimeCardOS.bin. It also create the file TimeCardOS_Gotham.bin which is based on the TimeCardOS.bin and it has an additional 16-byte header with the PCIe ID. 
-
-The binaries are copied to the folder */[YOUR_PATH]/Implementation/Xilinx/TimeCard/Binaries/*. 
-The existing bitstreams in the Binaries folder are overwritten and also a copy of the files is created in a subfolder of the Binaries folder with a timestamp. This way, the latest implementation run is always found at the same position, but backups of the previous (and current) runs are still available.
-
-The latest binaries can be found here:
-- */[YOUR_PATH]/Implementation/Xilinx/TimeCard/Binaries/Factory_TimeCardOS.bin*
-- */[YOUR_PATH]/Implementation/Xilinx/TimeCard/Binaries/Golden_TimeCardOS.bin*
-- */[YOUR_PATH]/Implementation/Xilinx/TimeCard/Binaries/TimeCardOS.bin*
-- */[YOUR_PATH]/Implementation/Xilinx/TimeCard/Binaries/TimeCardOS_Gotham.bin*
-
-The timestamped backups are found in a folder in this format:
-
-*/[YOUR_PATH]/Implementation/Xilinx/TimeCard/Binaries/YYYY_MM_DD hh_mm_ss/*, where YYYY: Year, MM: Month, DD: Day, hh: Hour, mm Minute, ss: Second
-
-E.g. for 30th of January 2022 at 13:05:00: 
-/[YOUR_PATH]/Implementation/Xilinx/TimeCard/Binaries/2022_01_30 13_05_00/
-
-The Script can be run from the Vivado TCL console (when project is open) by the command:
-
-*source /[YOUR_PATH]/Implementation/Xilinx/TimeCard/CreateBinariesAll.tcl*
-
-(Alternatively, it can be started via the Tool=>Run Tcl Script… menu in the Vivado GUI while the project is open)
-
-### 8.3 Resource Utilization
-The design is implemented at the FPGA [Artix-7 XC7A100T-FGG484-1](https://docs.xilinx.com/v/u/en-US/ug475_7Series_Pkg_Pinout).
-
-A resource utilization summary is shown below.
-|Resource|Used|Available|Util%|
-|--------|:--:|:-------:|:---:|
-|LUTs|35300|63400|55.68|
-|Flip Flops|29881|126800|23.57|
-|BRAMs|22.5|135|22.90|
-|DSPs|23|240|9.58|
-
-
-## 9. Program FPGA and SPI Flash
-For the initial programming of the FPGA and SPI Flash the JTAG programmer is needed and has to be connected to the USB JTAG.
-After a successfully programmed FPGA, the design contains an AXI QUAD SPI Core which allows field updates.
-
-The FPGA images are stored at the folder [Binaries](Binaries/).
-
-### 9.1 Bitstreams with Fallback Configuration
-The FPGA design is split into two different bitstreams/bin-files to allow a fail-safe field update. 
-- The first image is the Golden/Fallback image *Golden_TimeCardOS.bin*. It contains only a limited functionality which provides access to the SPI Flash. 
-- The second image is the latest version of the regular image *TimeCardOS.bin*. It is used for normal operation and it is the one which is replaced in a field update.
-
-The FPGA configuration starts always at Addr0 where the Golden image is located. The Golden image has the start address of the Update image TimeCardOS. 
-The configuration jumps directly to this address and tries to load the Update image. If this load fails it falls back to the Golden image.
-
-Details about this Multiboot/Fallback approach can be found in the Xilinx Application Note 
-[MultiBoot with 7 Series FPGAs and BPI](https://www.xilinx.com/support/documentation/application_notes/xapp1246-multiboot-bpi.pdf).
-
-The *Factory_TimeCardOS.bin* image contains the two bitstreams and it shall be used to program the SPI flash for the first time, as example, during the productization. 
-
-This combined image has following structure:
-
-|Configuration Info|Value|
-|-------------------|----------|
-|File Format        |BIN       |
-|Interface          |SPIX4     |
-|Size               |16M       |
-|Start Address      |0x00000000|
-|End Address        |0x00FFFFFF|
-
-|Addr1         |Addr2         |File(s)              |
-|:------------:|:------------:|---------------------|
-|0x00000000    |0x002C2A3B    |Golden_TimeCardOS.bit|
-|0x00400000    |0x006C37AF    |TimeCardOS.bit       |
-
-The image *TimeCardOS.bin* is the update/regular image and it shall be used for the field update via SPI.
-For the update, this bitstream must be placed at 0x00400000 in the SPI flash.
-
-### 9.2 SPI programming steps (non-volatile)
-
-If the configuration memory device is already added to the project go to step 7, otherwise, go to step 1.
-1. Go to the Hardware Manager menu
-
-   ![Hardware Manager](Additional%20Files/HwManager.png) 
-
-2. Right klick on “xc7a100t_0(1)”, a menu will pop up
-3. Choose “Add Configuration Memory Device …” from the menu, the following window will pop up
-
-   ![Add Config Memory](Additional%20Files/AddConfigMem.png)
-
-4. Select “mt25ql128-spi-x1_x2_x4” as the SPI Flash type
-5. Press Ok, a new window will pop up:
-
-   ![Add Config Confirm](Additional%20Files/AddConfigConfirm.png)
-
-6. Press cancel
-7. Go to the Hardware Manager Menu which will have the flash attached
-
-   ![Hardware Manager Updated](Additional%20Files/HwManagerUpdated.png) 
-
-8. Right klick on “mt25ql128-spi-x1_x2_x4”, a menu will pop up
-9. Choose “Program Configuration Memory Device …” from the menu, the following window will pop up
-
-   ![Config Mem Program](Additional%20Files/ConfigMemProgram.png) 
-
-10. Select the bitstream you want to program:
-**Factory_TimeCardOS.bin** 
-
-IMPORTANT NOTE: 
-If the TimeCardOS.bin is loaded in this step, the field update will not work, as described in [Chapter 9.1](#91-bitstreams-with-fallback-configuration)!
-
-11. Press Ok and wait for completion
-12. Disconnect the JTAG interface from the board
-13. Power cycle or Reset the board / Cold start of the PC
-14. The RUN LED will blink
