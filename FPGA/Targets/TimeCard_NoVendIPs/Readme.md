@@ -8,6 +8,8 @@ Upstream repo: [Time-Card](https://github.com/Time-Appliances-Project/Time-Card)
 
 The `CreateProject.tcl` can be run to create the project, and run synthesis/implementation to generate bitstream. The bitstream was tested on the [OCP-TAP Time Card](https://www.makerfabs.com/ocp-tap-time-card.html). 
 
+[Detailed tutorial and testing guide](../../../DOC/Setup-and-Usage.md)
+
 This work is kindly sponsored by the [NGI ZERO Entrust fund](https://nlnet.nl/project/PTP-timingcard-gateware/). 
 
 One future plan of this project is to integrate an on-board 10/100/1000M ethernet PHY (or 10 Gbps requires no external PHY), and implement PTP-capable ethernet MAC, as a standalone PTP grandmaster clock. Seems NetTimeLogic [has PMOD ethernet module support in progress](https://www.linkedin.com/posts/nettimelogic-gmbh_fpga-vhdl-embeddedsystems-activity-7318288811707318272-zVQb). 
