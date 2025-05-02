@@ -41,7 +41,7 @@ parameter [31:0] ClockPeriod_Gen=20,
 parameter CableDelay_Gen="false",
 parameter [31:0] InputDelay_Gen=0,
 parameter InputPolarity_Gen="true",
-parameter [31:0] HighResFreqMultiply_Gen=5,
+parameter [31:0] HighResFreqMultiply_Gen=4,
 parameter [31:0] DriftMulP_Gen=3,
 parameter [31:0] DriftDivP_Gen=4,
 parameter [31:0] DriftMulI_Gen=3,
@@ -101,8 +101,8 @@ input wire AxiReadDataReady_RdyIn,
 output wire [1:0] AxiReadDataResponse_DatOut,
 output wire [31:0] AxiReadDataData_DatOut
 );
-import timecard_package::*;
-integer i;
+import timecard_package_svh::*;
+//integer i;
 
 parameter ClkCyclesInMillisecond_Con = 1000000 / ClockPeriod_Gen;
 parameter PeriodWindow_Con = 100;  // in milliseconds
@@ -116,7 +116,7 @@ parameter OffsetFactorP_Con = (OffsetMulP_Gen * (2 ** 16)) / OffsetDivP_Gen;
 parameter OffsetFactorI_Con = (OffsetMulI_Gen * (2 ** 16)) / OffsetDivI_Gen;
 parameter DriftFactorP_Con = (DriftMulP_Gen * (2 ** 16)) / DriftDivP_Gen;
 parameter DriftFactorI_Con = (DriftMulI_Gen * (2 ** 16)) / DriftDivI_Gen;
-parameter IntegralMax_Con = 1'b1; 
+parameter IntegralMax_Con = {(FactorSize_Con){1'b1}};
 // PPS Slave version
 parameter [7:0]PpsSlaveMajorVersion_Con = 0;
 parameter [7:0]PpsSlaveMinorVersion_Con = 1;
@@ -344,21 +344,37 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
         ClockTime_Second_DatReg <= ClockTime_Second_DatIn;
         ClockTime_Nanosecond_DatReg <= ClockTime_Nanosecond_DatIn;
         ClockTime_ValReg <= ClockTime_ValIn;
-        for (i=(HighResFreqMultiply_Gen * 2) - 1; i >= 0; i = i - 1) begin: for_loop
-          if(i >= (HighResFreqMultiply_Gen * 2 - 3)) begin
-            if(TimestampSysClk_EvtShiftReg[i] == 1'b1) begin
-              RegisterDelay_DatReg <= 3 * ClockPeriod_Gen;
-              disable for_loop;
-            end
-          end else if(i >= (HighResFreqMultiply_Gen - 3)) begin
-            if(TimestampSysClk_EvtShiftReg[i] == 1'b1) begin
-              RegisterDelay_DatReg <= 2 * ClockPeriod_Gen + (int'( (ClockPeriod_Gen / (2 * HighResFreqMultiply_Gen)) + (((i - (HighResFreqMultiply_Gen - 3)) * ClockPeriod_Gen) / (HighResFreqMultiply_Gen)) ));
-              disable for_loop;
-            end
-          end else begin
-            RegisterDelay_DatReg <= 2 * ClockPeriod_Gen;
-          end
+        if (HighResFreqMultiply_Gen != 4) begin
+          $error("Please modify PpsSlave.sv for other HighResFreq Multipliers");
         end
+        if (|TimestampSysClk_EvtShiftReg[7:5]) begin
+          RegisterDelay_DatReg <= 3 * ClockPeriod_Gen;
+        end else if (TimestampSysClk_EvtShiftReg[4]) begin
+          RegisterDelay_DatReg <= 2 * ClockPeriod_Gen + (int'( (real'(ClockPeriod_Gen) / real'(2 * HighResFreqMultiply_Gen)) + ((real'(4 - (HighResFreqMultiply_Gen - 3)) * ClockPeriod_Gen) / real'(HighResFreqMultiply_Gen)) ));
+        end else if (TimestampSysClk_EvtShiftReg[3]) begin
+          RegisterDelay_DatReg <= 2 * ClockPeriod_Gen + (int'( (real'(ClockPeriod_Gen) / real'(2 * HighResFreqMultiply_Gen)) + ((real'(3 - (HighResFreqMultiply_Gen - 3)) * ClockPeriod_Gen) / real'(HighResFreqMultiply_Gen)) ));
+        end else if (TimestampSysClk_EvtShiftReg[2]) begin
+          RegisterDelay_DatReg <= 2 * ClockPeriod_Gen + (int'( (real'(ClockPeriod_Gen) / real'(2 * HighResFreqMultiply_Gen)) + ((real'(2 - (HighResFreqMultiply_Gen - 3)) * ClockPeriod_Gen) / real'(HighResFreqMultiply_Gen)) ));
+        end else if (TimestampSysClk_EvtShiftReg[1]) begin
+          RegisterDelay_DatReg <= 2 * ClockPeriod_Gen + (int'( (real'(ClockPeriod_Gen) / real'(2 * HighResFreqMultiply_Gen)) + ((real'(1 - (HighResFreqMultiply_Gen - 3)) * ClockPeriod_Gen) / real'(HighResFreqMultiply_Gen)) ));
+        end else begin
+          RegisterDelay_DatReg <= 2 * ClockPeriod_Gen;
+        end
+        //for (i=(HighResFreqMultiply_Gen * 2) - 1; i >= 0; i = i - 1) begin: for_loop
+          //if(i >= (HighResFreqMultiply_Gen * 2 - 3)) begin
+            //if(TimestampSysClk_EvtShiftReg[i] == 1'b1) begin
+              //RegisterDelay_DatReg <= 3 * ClockPeriod_Gen;
+              //disable for_loop;
+            //end
+          //end else if(i >= (HighResFreqMultiply_Gen - 3)) begin
+            //if(TimestampSysClk_EvtShiftReg[i] == 1'b1) begin
+              //RegisterDelay_DatReg <= 2 * ClockPeriod_Gen + (int'( (real'(ClockPeriod_Gen) / real'(2 * HighResFreqMultiply_Gen)) + ((real'(i - (HighResFreqMultiply_Gen - 3)) * ClockPeriod_Gen) / real'(HighResFreqMultiply_Gen)) ));
+              //disable for_loop;
+            //end
+          //end else begin
+            //RegisterDelay_DatReg <= 2 * ClockPeriod_Gen;
+          //end
+        //end
       end
       // Compensate the timestamp delays. Ensure that the Nanosecond field does not underflow and the pulse period is in the expected window. 
       if(PeriodIsOk_ValReg == 1'b1 && TimestampSysClk3_EvtReg == 1'b1 && TimestampSysClk4_EvtReg == 1'b0) begin
@@ -391,11 +407,11 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
       end
       // Count period
       if(PulseStarted_ValReg[1] == 1'b1 && NewMillisecond_DatReg == 1'b1) begin
-        if((Sim_Gen == "false" && ((PeriodTimer_CntReg < (1000 + PeriodWindow_Con)))) || (Sim_Gen == "true" && ((PeriodTimer_CntReg < ((1000 + PeriodWindow_Con) / 10))))) begin
+        if((Sim_Gen == "false" && ((PeriodTimer_CntReg < (1000 + PeriodWindow_Con)))) || (Sim_Gen == "true" && ((PeriodTimer_CntReg < ((1000 + PeriodWindow_Con) / 1))))) begin
           PeriodTimer_CntReg <= PeriodTimer_CntReg + 1;
           // when the period's upper limit is exceeded, report an error  
         end
-        else if((Sim_Gen == "false" && (PeriodTimer_CntReg == (1000 + PeriodWindow_Con))) || (Sim_Gen == "true" && (PeriodTimer_CntReg == ((1000 + PeriodWindow_Con) / 10)))) begin
+        else if((Sim_Gen == "false" && (PeriodTimer_CntReg == (1000 + PeriodWindow_Con))) || (Sim_Gen == "true" && (PeriodTimer_CntReg == ((1000 + PeriodWindow_Con) / 1)))) begin
           PeriodTimer_CntReg <= PeriodTimer_CntReg + 1;
           // set to an invalid value until a next pulse begins
           PeriodError_DatReg <= 1'b1;
@@ -408,7 +424,7 @@ reg [31:0] PpsSlaveCableDelay_DatReg;
         end
       end
       // Validate period
-      if((Sim_Gen == "false" && ((PeriodTimer_CntReg < (1000 + PeriodWindow_Con)) && (PeriodTimer_CntReg >= (1000 - PeriodWindow_Con)))) || (Sim_Gen == "true" && ((PeriodTimer_CntReg < ((1000 + PeriodWindow_Con) / 10)) && (PeriodTimer_CntReg >= ((1000 - PeriodWindow_Con) / 10))))) begin
+      if((Sim_Gen == "false" && ((PeriodTimer_CntReg < (1000 + PeriodWindow_Con)) && (PeriodTimer_CntReg >= (1000 - PeriodWindow_Con)))) || (Sim_Gen == "true" && ((PeriodTimer_CntReg < ((1000 + PeriodWindow_Con) / 1)) && (PeriodTimer_CntReg >= ((1000 - PeriodWindow_Con) / 1))))) begin
         PeriodIsOk_ValReg <= 1'b1;
       end else begin
         PeriodIsOk_ValReg <= 1'b0;
