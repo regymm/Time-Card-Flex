@@ -101,7 +101,7 @@ input wire AxiReadDataReady_RdyIn,
 output wire [1:0] AxiReadDataResponse_DatOut,
 output wire [31:0] AxiReadDataData_DatOut
 );
-import timecard_package_svh::*;
+import timecard_package::*;
 //integer i;
 
 parameter ClkCyclesInMillisecond_Con = 1000000 / ClockPeriod_Gen;
