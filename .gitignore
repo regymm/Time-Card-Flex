@@ -2,4 +2,5 @@ FPGA/Targets/TimeCard_Verilog/TimeCard_Verilog
 FPGA/Targets/TimeCard_NoVendIPs/TimeCard_NoVendIPs
 *.log
 *.jou
+*.pb
 work
