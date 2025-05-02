@@ -20,6 +20,10 @@ vivado -mode batch -source TimeCard_NoVendIPs.tcl
 
 Plug-and-play PCIe devices probably works, but it's not very good. BAR changes can't be reflected, at least. Reboot the machine instead. 
 
+The design is capable to operate without PCIe, and a computer reboot won't reset the board. On the Time Card, the button on the ALINX module does the reset. 
+
+![](IMG/TIMECARD.jpg)
+
 ### 2.  Time Card standalone verification
 
 **a.** Basic verification of the Time Card's GPS and SMA can be refered in [Verification Procedure given by OCP-TAP](./OCP-TAP/TimeCard_VerificationProcedure_8-24-2023.docx). The folder also contains firmware flashing guides for GNSS module and the TimeCard's FPGA. Output details will differ, but commands to run are the same. 
