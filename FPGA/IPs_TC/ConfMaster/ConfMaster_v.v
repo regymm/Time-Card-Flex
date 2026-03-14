@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 module ConfMaster_v #(
-parameter ConfigListSize = 14,
-parameter RomAddrWidth_Con = 4,
+parameter [31:0]ConfigListSize = 14,
+parameter [31:0]RomAddrWidth_Con = 4,
 parameter [31:0] AxiTimeout_Gen=0,
 parameter ConfigFile_Processed="/dev/null",
 parameter [31:0] ClockPeriod_Gen=20

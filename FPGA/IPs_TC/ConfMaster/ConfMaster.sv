@@ -38,8 +38,8 @@
 `include "TimeCard_Package.svh"
 
 module ConfMaster#(
-parameter ConfigListSize = 0,
-parameter RomAddrWidth_Con = 0,
+parameter [31:0] ConfigListSize = 0,
+parameter [31:0] RomAddrWidth_Con = 0,
 parameter [31:0] AxiTimeout_Gen=0,
 parameter ConfigFile_Processed="/dev/null",
 parameter [31:0] ClockPeriod_Gen=20
@@ -48,7 +48,7 @@ parameter [31:0] ClockPeriod_Gen=20
 input wire SysClk_ClkIn,
 input wire SysRstN_RstIn,
 // Configuration Output             
-output reg ConfigDone_ValOut,
+(* mark_debug = "true" *)output reg ConfigDone_ValOut,
 // Axi              
 output wire AxiWriteAddrValid_ValOut,
 input wire AxiWriteAddrReady_RdyIn,
@@ -206,19 +206,19 @@ reg AxiReadDataReady_RdyReg;
       end
       FetchConfig_St : begin
         case(RomRead_DatReg[31:0])
-        1 : begin
+        32'h1 : begin
           ConfigCommand_DatReg <= Skip_E;
           ConfigState_StaReg <= Skip_St;
         end
-        2 : begin
+        32'h2 : begin
           ConfigCommand_DatReg <= Wait_E;
           ConfigState_StaReg <= Wait_St;
         end
-        3 : begin
+        32'h3 : begin
           ConfigCommand_DatReg <= Read_E;
           ConfigState_StaReg <= StartReadWrite_St;
         end
-        4 : begin
+        32'h4 : begin
           ConfigCommand_DatReg <= Write_E;
           ConfigState_StaReg <= StartReadWrite_St;
         end
